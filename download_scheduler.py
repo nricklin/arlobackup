@@ -65,7 +65,7 @@ def handler(event, context):
 				"thumbnail_key": prefix + 'media/' + filename + '_thumbnail.jpg'
 			}
 		} 
-		print message
+		print(message)
 
 		response = sqs.send_message(
 			QueueUrl=QUEUENAME,
