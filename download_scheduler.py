@@ -36,6 +36,13 @@ def handler(event, context):
 
 	print(event)
 	print(context)
+	print(USERNAME)
+	print(PASSWORD)
+	print(QUEUENAME)
+	print(S3BUCKET)
+	print(prefix)
+	print(cache)
+	
 
 	# get list of recent arlo media objects from past 7 days
 	arlo = Arlo(USERNAME, PASSWORD)
