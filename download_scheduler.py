@@ -28,7 +28,7 @@ prefix = os.getenv('prefix')
 cacheprefix = prefix + 'cache/'
 
 cache = Cache(S3BUCKET,cacheprefix)
-latest_saved_media_timestamp = cache.get('latest_saved_media_timestamp')
+
 
 sqs = boto3.client('sqs')
 
@@ -44,6 +44,7 @@ def handler(event, context):
 	library = arlo.GetLibrary(seven_days_ago, today)
 
 	# only process library items that have arrived since our last processing time
+	latest_saved_media_timestamp = cache.get('latest_saved_media_timestamp')
 	library = [l for l in library if l['lastModified'] > latest_saved_media_timestamp]
 
 	if len(library) > 0:
