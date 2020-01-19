@@ -19,20 +19,24 @@ from datetime import timedelta, date
 import json, os, datetime, boto3
 from py_s3_cache import Cache
 
-# config values
-USERNAME = os.getenv('USERNAME')
-PASSWORD = os.getenv('PASSWORD')
-QUEUENAME = os.getenv('QUEUENAME')
-S3BUCKET = os.getenv('S3BUCKET')
-prefix = os.getenv('prefix')
-cacheprefix = prefix + 'cache/'
 
-cache = Cache(S3BUCKET,cacheprefix)
-
-
-sqs = boto3.client('sqs')
 
 def handler(event, context):
+
+	# config values
+	USERNAME = os.getenv('USERNAME')
+	PASSWORD = os.getenv('PASSWORD')
+	QUEUENAME = os.getenv('QUEUENAME')
+	S3BUCKET = os.getenv('S3BUCKET')
+	prefix = os.getenv('prefix')
+	cacheprefix = prefix + 'cache/'
+
+	cache = Cache(S3BUCKET,cacheprefix)
+
+
+	sqs = boto3.client('sqs')
+
+
 
 	print(event)
 	print(context)
@@ -42,7 +46,7 @@ def handler(event, context):
 	print(S3BUCKET)
 	print(prefix)
 	print(cache)
-	
+
 
 	# get list of recent arlo media objects from past 7 days
 	arlo = Arlo(USERNAME, PASSWORD)
