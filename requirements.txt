@@ -1,2 +1,3 @@
 arlo
 py-s3-cache
+requests
