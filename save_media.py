@@ -1,5 +1,5 @@
 import json, boto3
-from botocore.vendored import requests
+import requests
 s3 = boto3.client('s3')
 
 def handler(event, context):
